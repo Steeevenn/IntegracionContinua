@@ -19,9 +19,9 @@ RUN mvn clean package -DskipTests=true
 #Traemos imagen de jdk
 FROM openjdk:17-jdk-alpine as prod
 #creamos el directorio de aplicación
-RUN mkdir /app
+
 # copie el archivo jar de la etapa del generador en la primera etapa, que se encuentra en /app/target/. lo copiamos en /app/app.jar
-COPY --from=builder  target/crud-application-0.0.1-SNAPSHOT.jar /app/crud-application.jar
+COPY --from=builder /app/target /app/app.jar/
 #definimos el puerto del servicio
 ENV SERVER_PORT=6060
 # Establece el directorio de trabajo
@@ -29,7 +29,7 @@ WORKDIR /app
 #Le indicamos a docker que exponga el puerto donde trabajará el servicio
 EXPOSE 6060
 #Correr aplicación cuando inicie el contenedor
-CMD ["java","-jar", "crud-application.jar"]
+ENTRYPOINT [ "executable" ] ["java","-jar", "app.jar"]
 
 #Archivo inicial
 # Usa una imagen base de Java
