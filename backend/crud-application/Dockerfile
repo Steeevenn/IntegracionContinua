@@ -29,7 +29,7 @@ WORKDIR /app
 #Le indicamos a docker que exponga el puerto donde trabajará el servicio
 EXPOSE 6060
 #Correr aplicación cuando inicie el contenedor
-ENTRYPOINT [ "executable" ] ["java","-jar", "app.jar"]
+CMD [ "executable" ] ["java","-jar", "app.jar"]
 
 #Archivo inicial
 # Usa una imagen base de Java
