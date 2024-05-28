@@ -1,0 +1,45 @@
+#Comandos usados para crear archivo frontend
+
+$docker build . -t "frontend"
+
+
+#Comandos usados para crear archivo backend
+
+$docker build . -t "frontend"
+
+#comandos para correr los contenedores inicialmente: se añaden -it  que permite usar consola(t) dentro de los contenedores que corren y la mantiene abierta (i), -d que hace correr los contenedores en el backgroud, -p que permite exponer el puerto de escucha del contenedor y --name, que permite nombrarlos. El comando bash inicia bash shell dentro del contenedor para usar en la consola.
+El comando --network crea una nueva red y asigna el contenedor a esta.
+
+frontend: $docker container run -it -d -p 3000:3000 --name cifrontend --network crudapp frontend bash
+backend: $docker container run -it -d -p 6060:6060 --name --network crudapp  cibackend backtend bash
+
+#Comandos para modificar configuraciones de un contenedor ya existente.
+
+frontend: $docker container exec -it cifrontend bash
+backend: $docker container exec -it cibackend bash
+
+#Comandos Networking
+
+Nota: Por default, cada contenedor está conectado  a una red virtual privada a través de un "bridge",
+cada red vitual utilizan el mismo firewall NAT en el host para gestionar y proteger el trafico, asegurando que las direcciones IP sean correctamente traducidas y que se mantenga la seguridad de la red,
+Ambos contenederos se podrán comunicar entre ellos dado que NO se especificó una red virtual diferente a la creada por default.
+
+--Verificar IP de contenedores
+ frontend: $docker container inspect --format '{{.NetworkSettings.IPAddress}} cifrontend
+ backend: $docker container inspect --format '{{.NetworkSettings.IPAddress}} cibackend
+
+--Mostrar Redes: 
+$docker network ls 
+
+--Inspeccionar Redes:
+$docker network inspect (red)
+
+--Crear redes:
+$docker network create (nombrered/crudapp) --driver
+
+-Añadir una red a un contenedor:
+docker network connect (idred idcontenedor)
+
+--Liberar una red de un contenedor:
+$docker network disconnect (idred idcontenedor)
+
