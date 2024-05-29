@@ -10,8 +10,8 @@ $docker build . -t "frontend"
 #comandos para correr los contenedores inicialmente: se añaden -it  que permite usar consola(t) dentro de los contenedores que corren y la mantiene abierta (i), -d que hace correr los contenedores en el backgroud, -p que permite exponer el puerto de escucha del contenedor y --name, que permite nombrarlos. El comando bash inicia bash shell dentro del contenedor para usar en la consola.
 El comando --network crea una nueva red y asigna el contenedor a esta.
 
-frontend: $docker container run -it -d -p 3000:3000 --name cifrontend --network crudapp frontend bash
-backend: $docker container run -it -d -p 6060:6060 --name --network crudapp  cibackend backtend bash
+frontend: $docker container run -it -d -p 3000:3000 --name cifrontend --network crudapp frontend 
+backend: $docker container run -it -d -p 6060:6060 --name --network crudapp  cibackend backtend
 
 #Comandos para modificar configuraciones de un contenedor ya existente.
 
