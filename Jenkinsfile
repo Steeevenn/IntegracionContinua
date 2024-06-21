@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent any{
+           docker {
+            image 'docker:19.03.13'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     parameters {
         choice(name: 'PIPELINE_STAGE', choices: ['build', 'deploy'], description: 'Seleccione el pipeline a ejecutar')
     }
