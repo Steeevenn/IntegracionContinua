@@ -23,7 +23,11 @@ pipeline {
                 }
                 stage('Test Spring App') {
                     steps {
-                        sh 'docker run --rm spring-app2 ./mvnw test'
+                        script {
+                            docker.image('spring-app2').inside {
+                                sh './mvnw test'
+                            }
+                        }
                     }
                 }
                 stage('Build Frontend') {
@@ -35,7 +39,11 @@ pipeline {
                 }
                 stage('Test Frontend') {
                     steps {
-                        sh 'docker run --rm frontend npm test'
+                        script {
+                            docker.image('frontend').inside {
+                                sh 'npm test'
+                            }
+                        }
                     }
                 }
             }
