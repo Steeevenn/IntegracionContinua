@@ -3,9 +3,12 @@ pipeline {
 
     stages {
         stage('Clear workspace'){
-              script{
+            steps{
+                 script{
                   sh 'rm -rm ./*'
               }
+            }
+             
         }
         stage('Checkout') {
             steps {
