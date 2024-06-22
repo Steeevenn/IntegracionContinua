@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Clear workspace){
+              script{
+                  sh 'rm -rm ./*'
+              }
+        }
         stage('Checkout') {
             steps {
                 git 'https://github.com/Steeevenn/Integracioncontinua.git'
